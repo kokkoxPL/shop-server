@@ -3,7 +3,6 @@ import express, { Express } from "express";
 import compression from "compression";
 import { json, urlencoded } from "body-parser";
 
-
 import routes from "./route";
 
 const app: Express = express();
