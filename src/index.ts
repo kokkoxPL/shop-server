@@ -3,7 +3,7 @@ import express, { Express } from "express";
 import compression from "compression";
 import { json, urlencoded } from "body-parser";
 
-import routes from "./route";
+import userRoutes from "./user/route";
 
 const app: Express = express();
 
@@ -11,6 +11,6 @@ app.use(urlencoded({ extended: false }));
 app.use(json());
 app.use(compression());
 
-app.use("/api", routes);
+app.use("/api/user", userRoutes);
 
 app.listen(process.env.PORT);
