@@ -5,13 +5,13 @@ services:
     build:
       context: .
       dockerfile: Dockerfile
-    volumes:
-      - ./:/app
+    image: shop
     container_name: shop
-    env_file:
-      - .env
+    env_file: .env
     expose:
       - 4000
     ports:
-      - '4000:4000'
-    command: npm run start
+      - '4001:4000'
+    volumes:
+      - .:/app
+    command: npm run dev
