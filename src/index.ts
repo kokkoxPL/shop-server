@@ -11,7 +11,7 @@ app.use(urlencoded({ extended: false }));
 app.use(json());
 app.use(compression());
 
-app.get('/test', (req, res) => res.sendStatus(200));
+app.get('/', (req, res) => res.sendStatus(200));
 
 app.use('/api/user', userRoutes);
 

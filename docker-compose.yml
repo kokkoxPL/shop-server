@@ -17,7 +17,8 @@ services:
       - .:/app
     command: npm run dev
     networks:
-      - app
+      - app-network
+
   nginx:
     image: nginx
     container_name: nginx
@@ -25,11 +26,11 @@ services:
     ports:
       - '80:80'
     volumes:
-      - ./nginx:/etc/nginx/conf.d
+      - ./nginx/default.conf:/etc/nginx/conf.d/default.conf
     depends_on:
       - nodejs
     networks:
-      - app
+      - app-network
+
 networks:
-  app:
-    external: true
+  app-network:
