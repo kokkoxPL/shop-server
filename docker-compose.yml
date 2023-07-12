@@ -12,10 +12,12 @@ services:
     expose:
       - 4000
     ports:
-      - '81:4000'
+      - '4001:4000'
     volumes:
       - .:/app
     command: npm run dev
+    networks:
+      - app
   nginx:
     image: nginx
     container_name: nginx
@@ -26,3 +28,8 @@ services:
       - ./nginx:/etc/nginx/conf.d
     depends_on:
       - nodejs
+    networks:
+      - app
+networks:
+  app:
+    external: true
