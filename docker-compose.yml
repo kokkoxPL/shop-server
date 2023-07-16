@@ -5,16 +5,11 @@ services:
     build:
       context: .
       dockerfile: Dockerfile
-    image: nodejs
     container_name: nodejs
     env_file: .env
     restart: unless-stopped
-    expose:
-      - 4000
     ports:
       - '4000:4000'
-    volumes:
-      - .:/app
     command: npm run dev
     networks:
       - app-network

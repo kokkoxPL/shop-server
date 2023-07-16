@@ -8,4 +8,6 @@ RUN npm i
 
 COPY . .
 
-RUN npx prisma generate
+EXPOSE 4000
+
+RUN npx prisma migrate dev --name init 
