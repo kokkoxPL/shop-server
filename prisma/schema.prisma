@@ -7,19 +7,20 @@ datasource db {
   url      = env("DATABASE_URL")
 }
 
-model users {
+model User {
+  id       String  @id
+  email    String  @unique
   name     String
   surname  String
-  email    String  @unique
   password String
   phone    Int
-  admin    Boolean
+  isAdmin  Boolean @default(false)
 }
 
-model products {
-  id     Int      @id @default(autoincrement())
+model Product {
+  id     String   @id
   title  String
-  price  Int
+  price  Float
   img    String
   colors String[]
 }

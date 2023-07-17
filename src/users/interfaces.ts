@@ -1,15 +1,11 @@
 interface User {
+	id: string;
+	email: string;
 	name: string;
 	surname: string;
-	email: string;
 	password: string;
 	phone: number;
-	admin: boolean;
+	isAdmin: boolean;
 }
 
-interface Login {
-	email: string;
-	password: string;
-}
-
-export type { User, Login };
+export type { User };
