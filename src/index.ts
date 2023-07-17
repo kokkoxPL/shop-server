@@ -3,8 +3,8 @@ import express, { Express } from 'express';
 import compression from 'compression';
 import { json, urlencoded } from 'body-parser';
 
-import userRoutes from './users/route';
-import productRoutes from './products/route';
+import userRoutes from './users/routes';
+import productRoutes from './products/routes';
 
 const app: Express = express();
 

@@ -8,12 +8,11 @@ datasource db {
 }
 
 model users {
-  id       Int     @id @default(autoincrement())
-  nickname String  @unique
   name     String
   surname  String
   email    String  @unique
-  phone    Int     @unique
+  password String
+  phone    Int
   admin    Boolean
 }
 
