@@ -21,13 +21,13 @@ router.post('/new', async (req: Request, res: Response) => {
 
 		if (err instanceof Prisma.PrismaClientKnownRequestError) {
 			if (err.code === 'P2002') {
-				return res.status(400).json({ error: 'user exists' });
+				return res.status(400).json({ error: 'product exists' });
 			}
 		}
 		return res.sendStatus(400);
 	}
 
-	return res.sendStatus(200);
+	return res.status(200).json({ data });
 });
 
 router.get('/get', async (req: Request, res: Response) => {
