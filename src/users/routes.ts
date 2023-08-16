@@ -16,7 +16,7 @@ const isUser = (obj: any): obj is Omit<User, 'id'> => {
 		'surname' in obj &&
 		'password' in obj &&
 		'phone' in obj &&
-		'isAdmin' in obj
+		'admin' in obj
 	);
 };
 

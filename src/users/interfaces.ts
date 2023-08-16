@@ -5,7 +5,7 @@ interface User {
 	surname: string;
 	password: string;
 	phone: string;
-	isAdmin: boolean;
+	admin: boolean;
 }
 
 export type { User };

@@ -14,7 +14,7 @@ model User {
   surname  String
   password String
   phone    String
-  isAdmin  Boolean @default(false)
+  admin  Boolean @default(false)
 }
 
 model Product {
