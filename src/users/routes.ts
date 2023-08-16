@@ -51,7 +51,7 @@ router.post('/new', async (req: Request, res: Response) => {
 			}
 		}
 
-		return res.sendStatus(400).json(err);
+		return res.status(400).json(err);
 	}
 });
 
