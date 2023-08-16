@@ -7,6 +7,20 @@ import prisma from '../prisma';
 
 const router = Router();
 
+const isProduct = (obj: any): obj is Product => {
+	return 'id' in obj && 'title' in obj && 'price' in obj && 'img' in obj && 'colors' in obj;
+};
+
+router.get('/get', async (req: Request, res: Response) => {
+	const products = await prisma.product.findMany();
+
+	if (products.length === 0) {
+		return res.status(400).json({ error: 'no products' });
+	}
+
+	return res.status(200).json(products);
+});
+
 router.post('/new', async (req: Request, res: Response) => {
 	const body: Omit<Product, 'id'> = req.body;
 
@@ -30,16 +44,6 @@ router.post('/new', async (req: Request, res: Response) => {
 	return res.status(200).json({ data });
 });
 
-router.get('/get', async (req: Request, res: Response) => {
-	const products = await prisma.product.findMany();
-
-	if (!products) {
-		return res.status(400).json({ error: 'no users' });
-	}
-
-	return res.status(200).json(products);
-});
-
 router.get('/get/:id', async (req: Request, res: Response) => {
 	const id: string = req.params.id;
 
@@ -56,6 +60,41 @@ router.get('/get/:id', async (req: Request, res: Response) => {
 	}
 
 	return res.status(200).json(product);
+});
+
+router.post('/update', async (req: Request, res: Response) => {
+	const data: Product = req.body;
+
+	if (!isProduct(data)) {
+		return res.status(400).json({ error: 'wrong data' });
+	}
+
+	try {
+		const updateUser = await prisma.user.update({
+			where: { id: data.id },
+			data,
+		});
+
+		console.log(updateUser);
+
+		return res.sendStatus(200);
+	} catch (err) {
+		console.log(err);
+		return res.sendStatus(400);
+	}
+});
+
+router.post('/delete', (req: Request, res: Response) => {
+	const { id } = req.body;
+
+	if (!id) {
+		return res.status(400).json({ error: 'no id' });
+	}
+
+	prisma.user
+		.delete({ where: { id } })
+		.then(() => res.sendStatus(200))
+		.catch((err) => res.status(500).json(err));
 });
 
 export default router;

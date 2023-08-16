@@ -91,7 +91,7 @@ router.post('/update', async (req: Request, res: Response) => {
 
 	try {
 		const updateUser = await prisma.user.update({
-			where: { email: data.email },
+			where: { id: data.id },
 			data,
 		});
 

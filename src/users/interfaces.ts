@@ -4,7 +4,7 @@ interface User {
 	name: string;
 	surname: string;
 	password: string;
-	phone: number;
+	phone: string;
 	isAdmin: boolean;
 }
 
